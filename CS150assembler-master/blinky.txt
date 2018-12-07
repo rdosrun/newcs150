@@ -1,0 +1,259 @@
+START:
+
+        CALL TWO
+
+        CALL TWO
+
+        CALL FIVE
+
+        CALL EIGHT
+
+        CALL DELAY7
+
+        RJMP START
+
+ 
+
+TWO:
+
+        LDI R16, 0x02
+
+        LDI R17, 1
+
+        NEG R17
+
+DOTS2:
+
+        CALL TURNON
+
+        CALL DELAY1
+
+        CALL TURNOFF
+
+        CALL DELAY1
+
+        ADD R16, R17
+
+        BRBC 1, DOTS2
+
+        LDI R16, 0x03
+
+DASHES3:
+
+        CALL TURNON
+
+        CALL DELAY3
+
+        CALL TURNOFF
+
+        CALL DELAY1
+
+        ADD R16, R17
+
+        BRBC 1, DASHES3
+
+        RET
+
+ 
+
+FIVE:
+
+        LDI R16, 0x05
+
+        LDI R17, 1
+
+        NEG R17
+
+DOTS5:
+
+        CALL TURNON
+
+        CALL DELAY1
+
+        CALL TURNOFF
+
+        CALL DELAY1
+
+        ADD R16, R17
+
+        BRBC 1, DOTS5
+
+        RET
+
+ 
+
+EIGHT:
+
+        LDI R16, 0x03
+
+        LDI R17, 1
+
+        NEG R17
+
+DASHES32:
+
+        CALL TURNON
+
+        CALL DELAY3
+
+        CALL TURNOFF
+
+        CALL DELAY1
+
+        ADD R16, R17
+
+        BRBC 1, DASHES32
+
+        LDI R16, 0x02
+
+DOTS22:
+
+        CALL TURNON
+
+        CALL DELAY1
+
+        CALL TURNOFF
+
+        CALL DELAY1
+
+        ADD R16, R17
+
+        BRBC 1, DOTS22
+
+        RET
+
+ 
+
+DELAY1:
+
+        LDI R18, 199
+
+        LDI R19, 200
+
+        LDI R20, 100
+
+        LDI R22, 1
+
+        NEG R22
+
+LOOP1:
+
+        NOP
+
+        ADD R18, R22
+
+        BRBC 1, LOOP1
+
+        NOP
+
+        ADD R19, R22
+
+        BRBC 1, LOOP1
+
+        ADD R20, R22
+
+        BRBC 1, LOOP1
+
+        RET
+
+ 
+
+DELAY3:
+
+        LDI R18, 199
+
+        LDI R19, 200
+
+        LDI R20, 100
+
+        LDI R21, 3
+
+        LDI R22, 1
+
+        NEG R22
+
+LOOP3:
+
+        NOP
+
+        ADD R18, R22
+
+        BRBC 1, LOOP3
+
+        NOP
+
+        ADD R19, R22
+
+        BRBC 1, LOOP3
+
+        ADD R20, R22
+
+        BRBC 1, LOOP3
+
+        ADD R21, R22
+
+        BRBC 1, LOOP3
+
+        RET
+
+ 
+
+ 
+
+DELAY7:
+
+        LDI R18, 199
+
+        LDI R19, 200
+
+        LDI R20, 100
+
+        LDI R21, 7
+
+        LDI R22, 1
+
+        NEG R22
+
+LOOP7:
+
+        NOP
+
+        ADD R18, R22
+
+        BRBC 1, LOOP7
+
+        NOP
+
+        ADD R19, R22
+
+        BRBC 1, LOOP7
+
+        ADD R20, R22
+
+        BRBC 1, LOOP7
+
+        ADD R21, R22
+
+        BRBC 1, LOOP7
+
+        RET
+
+ 
+
+TURNON:
+
+        LDI R31, 0x20
+
+        OUT 0x05, r31
+
+        RET
+
+ 
+
+TURNOFF:
+
+        LDI R31, 0x00
+
+        OUT 0x05, R31
+
+        RET
